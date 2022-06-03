@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: springconfigmapdemo
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+welcome:
+  message: Welcome to learn about Spring Kubernetes ConfigMap 
+  source: local (yaml file)

@@ -1,0 +1,3 @@
+welcome:
+  message: Welcome to learn about Spring Kubernetes ConfigMap Source
+  source: ConfigMap (yaml file)

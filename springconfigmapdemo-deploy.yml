@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: springconfigmapdemo
+  labels:
+    app: springconfigmapdemo
+spec:
+  selector:
+    matchLabels:
+      app: springconfigmapdemo
+  replicas:  1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: springconfigmapdemo
+    spec:
+      containers:
+        - name: springconfigmapdemo
+          image: springconfigmapdemo:0.0.2-SNAPSHOT # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the cluster
+          volumeMounts:
+          - name: springconfigmap
+            mountPath: /etc/config
+      volumes:
+        - name: springconfigmap
+          configMap:
+            name: springconfigmapdemo
+        
