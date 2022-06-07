@@ -20,9 +20,26 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
+          env:
+            - name: spring.cloud.kubernetes.config.enabled
+              value: "true"
+            - name: spring.cloud.kubernetes.config.enableApi
+              value: "true"
+            - name: spring.cloud.kubernetes.config.name
+              value: springconfigmapdemo
+            - name: spring.cloud.kubernetes.config.namespace
+              value: default
+            - name: spring.cloud.kubernetes.reload.enabled
+              value: "true"
+            - name: spring.cloud.kubernetes.secrets.enabled
+              value: "true"
+            - name: spring.cloud.kubernetes.reload.monitoring-config-maps
+              value: "true"
+            - name: logging.level.org.springframework.cloud.kubernetes
+              value: DEBUG
           volumeMounts:
           - name: springconfigmap
-            mountPath: /etc/config
+            mountPath: /configmap
       volumes:
         - name: springconfigmap
           configMap:
